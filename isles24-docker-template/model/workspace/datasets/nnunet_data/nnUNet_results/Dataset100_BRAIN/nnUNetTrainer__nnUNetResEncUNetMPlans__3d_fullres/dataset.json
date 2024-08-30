@@ -1,0 +1,31 @@
+{
+    "channel_names": {
+        "0": "zscore",
+        "1": "zscore",
+        "2": "zscore",
+        "3": "zscore",
+        "4": "zscore",
+        "5": "zscore",
+        "6": "zscore",
+        "7": "zscore",
+        "8": "zscore",
+        "9": "zscore",
+        "10": "zscore",
+        "11": "zscore",
+        "12": "zscore",
+        "13": "zscore",
+        "14": "zscore",
+        "15": "zscore",
+        "16": "zscore",
+        "17": "zscore",
+        "18": "zscore",
+        "19": "zscore"
+    },
+    "labels": {
+        "background": 0,
+        "lesion": 1
+    },
+    "numTraining": 135,
+    "file_ending": ".nii.gz",
+    "overwrite_image_reader_writer": "SimpleITKIO"
+}

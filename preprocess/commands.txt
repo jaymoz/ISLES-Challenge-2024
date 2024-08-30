@@ -1,0 +1,39 @@
+export nnUNet_raw='C:/Users/ai2lab/Desktop/ISLES_2024/models/nn-UNET/workspace/datasets/nnunet_data/nnUNet_raw'
+export nnUNet_preprocessed='C:/Users/ai2lab/Desktop/ISLES_2024/models/nn-UNET/workspace/datasets/nnunet_data/nnUNet_preprocessed'
+export nnUNet_results='C:/Users/ai2lab/Desktop/ISLES_2024/models/nn-UNET/workspace/datasets/nnunet_data/nnUNet_results'
+
+
+CUDA_VISIBLE_DEVICES=0 nnUNetv2_train 100 3d_fullres 0 -p nnUNetResEncUNetLPlans & CUDA_VISIBLE_DEVICES=1 nnUNetv2_train 100 3d_fullres 2 -p nnUNetResEncUNetMPlans --c
+
+CUDA_VISIBLE_DEVICES=0 nnUNetv2_train 100 3d_fullres 4 -p nnUNetResEncUNetLPlans --c & CUDA_VISIBLE_DEVICES=1 nnUNetv2_train 100 3d_fullres 3 -p nnUNetResEncUNetLPlans --c
+
+CUDA_VISIBLE_DEVICES=0 nnUNetv2_train 100 3d_fullres 2 -p nnUNetResEncUNetLPlans & CUDA_VISIBLE_DEVICES=1 nnUNetv2_train 100 3d_fullres 3 -p nnUNetResEncUNetLPlans
+
+
+TORCHDYNAMO_DISABLE=1 OMP_NUM_THREADS=1 CUDA_VISIBLE_DEVICES=0 nnUNetv2_train 100 3d_fullres 0 -p nnUNetResEncUNetLPlans & 
+TORCHDYNAMO_DISABLE=1 OMP_NUM_THREADS=1 CUDA_VISIBLE_DEVICES=0 nnUNetv2_train 100 3d_fullres 1 -p nnUNetResEncUNetLPlans & 
+TORCHDYNAMO_DISABLE=1 OMP_NUM_THREADS=1 CUDA_VISIBLE_DEVICES=1 nnUNetv2_train 100 3d_fullres 2 -p nnUNetResEncUNetLPlans & 
+TORCHDYNAMO_DISABLE=1 OMP_NUM_THREADS=1 CUDA_VISIBLE_DEVICES=1 nnUNetv2_train 100 3d_fullres 3 -p nnUNetResEncUNetLPlans
+
+CUDA_VISIBLE_DEVICES=0 nnUNetv2_train 100 3d_fullres 0 -p nnUNetResEncUNetLPlans --c & 
+CUDA_VISIBLE_DEVICES=1 nnUNetv2_train 100 3d_fullres 1 -p nnUNetResEncUNetLPlans --c
+
+
+#XL
+CUDA_VISIBLE_DEVICES=0 nnUNetv2_train 100 3d_fullres 0 -p nnUNetResEncUNetXLPlans & CUDA_VISIBLE_DEVICES=1 nnUNetv2_train 100 3d_fullres 1 -p nnUNetResEncUNetXLPlans
+
+CUDA_VISIBLE_DEVICES=0 nnUNetv2_train 100 3d_fullres 0 -p nnUNetResEncUNetXLPlans --c & CUDA_VISIBLE_DEVICES=1 nnUNetv2_train 100 3d_fullres 1 -p nnUNetResEncUNetXLPlans --c
+
+
+#Evaluation metrics
+nnUNetv2_evaluate_folder /C:/Users/ai2lab/Desktop/ISLES_2024/models/nn-UNET/workspace/datasets/nnunet_data/nnUNet_raw/Dataset100_BRAIN/labelsTs/ /C:/Users/ai2lab/Desktop/ISLES_2024/models/nn-UNET/workspace/datasets/nnunet_data/nnUNet_predictions/ -djfile /C:/Users/ai2lab/Desktop/ISLES_2024/models/nn-UNET/workspace/datasets/nnunet_data/nnUNet_raw/Dataset100_BRAIN/dataset.json -pfile /C:/Users/ai2lab/Desktop/ISLES_2024/models/nn-UNET/workspace/datasets/nnunet_data/nnUNet_results/Dataset100_BRAIN/nnUNetTrainer__nnUNetResEncUNetMPlans__3d_fullres/plans.json
+
+#find best config
+nnUNetv2_find_best_configuration DATASET_NAME_OR_ID -c CONFIGURATIONS 
+nnUNetv2_find_best_configuration 100 -p nnUNetResEncUNetLPlans -c 3d_fullres
+
+
+
+
+# Predictions
+nnUNetv2_predict -i /C:/Users/ai2lab/Desktop/ISLES_2024/models/nn-UNET/workspace/datasets/nnunet_data/nnUNet_raw/Dataset100_BRAIN/imagesTs -o /C:/Users/ai2lab/Desktop/ISLES_2024/models/nn-UNET/workspace/datasets/nnunet_data/nnUNet_predictions/ -d 100 -c 3d_fullres -tr nnUNetTrainer -p nnUNetResEncUNetMPlans -chk checkpoint_latest.pth 
