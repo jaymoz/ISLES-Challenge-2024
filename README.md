@@ -28,26 +28,24 @@ Before you can use nnUNet, you must first set up a few things on your local mach
 
 We recommend creating the following structure:
 
-├── dataset/               # Directory for input data (not stored in the repo)
-│   ├── ISLES_24_dataset/  # Replace this with the ISLES 24 dataset
-│   ├── preprocessed/      # Temporary directory for holding preprocessed data
-│       ├── images/
-│       ├── masks/
-├── models/                # Pre-trained models and checkpoints
-│       ├── workspace/
-│           ├── datasets/
-|                ├── nnunet_data/
-│                  ├── nnUNet_predictions/
-│                  ├── nnUNet_preprocessed/
-│                  ├── nnUNet_raw/
-│                  ├── nnUNet_results/
-├── preprocess/            # Directory containing all the preprocessing scripts
-│   ├── copy_rename.py
-|      ...
-│   └── split_dataset.py  
-├── README.md              # Project documentation
-├── requirements.txt       # Python dependencies
-└── LICENSE                # License for the project
+| Directory | Description |
+|---|---|
+| dataset/ | Input data (not stored in the repo) |
+|   ├── ISLES_24_dataset/ | Replace with your dataset |
+|   └── preprocessed/ | Temporary directory for preprocessed data |
+|       ├── images/ | Preprocessed images |
+|       └── masks/ | Preprocessed masks |
+| models/ | Pre-trained models and checkpoints |
+|   └── workspace/ | Workspace for models |
+|       ├── datasets/ | Additional datasets |
+|       ... | Other model related directories |
+| preprocess/ | Directory containing preprocessing scripts |
+|   ├── copy_rename.py | Script for copying and renaming files |
+|   ... | Other preprocessing scripts |
+|   └── split_dataset.py | Script for splitting datasets |
+| README.md | Project documentation |
+| requirements.txt | Python dependencies |
+| LICENSE | License for the project |
 
 ### nnUNET Setup
 Before installing nnUNET, we recommend creating a virtual environment. You can install `nnUNETv2` using the following steps:
