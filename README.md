@@ -51,9 +51,6 @@ We recommend creating the following structure:
 └── LICENSE                # License for the project
 ```
 
-This format effectively represents your folder structure using indentation and hyphens. It's commonly used in GitHub repositories to visualize directory hierarchies.
-
-
 ### nnUNET Setup
 Before installing nnUNET, we recommend creating a virtual environment. You can install `nnUNETv2` using the following steps:
 Create a virtual environment:
