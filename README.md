@@ -21,5 +21,60 @@ Clone the repository:
 git clone https://github.com/jaymoz/ISLES-Challenge-2024.git
 cd ISLES-Challenge-2024
 ```
+Before you can use nnUNet, you must first set up a few things on your local machine or a capable server. You need to set paths on your machine representing where you save raw data, preprocessed data, and trained models.
+* nnUNet_raw: This is where you put your starting point data. It should follow the nnUNet datasets naming [convention](https://github.com/MIC-DKFZ/nnUNet/blob/master/documentation/dataset_format.md).
+* nnUNet_preprocessed: Preprocessed data will be saved here. This folder will be used by nnUNet when you run the preprocessing command (we will cover it below) in order to save the preprocessed data.
+* nnUNet_results: this is the folder where nnUNet will save the training artifacts, including model weights, configuration JSON files and debug output.
+
+We recommend creating the following structure:
+
+├── dataset/               # Directory for input data (not stored in the repo)
+│   ├── ISLES_24_dataset/  # Replace this with the ISLES 24 dataset
+│   ├── preprocessed/      # Temporary directory for holding preprocessed data
+│       ├── images/
+│       ├── masks/
+├── models/                # Pre-trained models and checkpoints
+│       ├── workspace/
+│           ├── datasets/
+|                ├── nnunet_data/
+│                  ├── nnUNet_predictions/
+│                  ├── nnUNet_preprocessed/
+│                  ├── nnUNet_raw/
+│                  ├── nnUNet_results/
+├── preprocess/            # Directory containing all the preprocessing scripts
+│   ├── copy_rename.py
+|      ...
+│   └── split_dataset.py  
+├── README.md              # Project documentation
+├── requirements.txt       # Python dependencies
+└── LICENSE                # License for the project
+
+### nnUNET Setup
+Before installing nnUNET, we recommend creating a virtual environment. You can install `nnUNETv2` using the following steps:
+Create a virtual environment:
+```bash
+python3 -m venv nnunet-env
+source nnunet-env/bin/activate
+```
+Install dependencies in the virual environment:
+```bash
+pip3 install -r requirements.txt
+```
+
+Install torch locally [here](https://pytorch.org/get-started/locally/]
+
+Clone the official `nnUNET` repository:
+```bash
+cd models/workspace
+git clone https://github.com/MIC-DKFZ/nnUNet.git
+cd nnUNet
+pip install -e .
+```
+(OPTIONAL) Install hiddenlayer. hiddenlayer enables nnU-net to generate plots of the network topologies it generates (see Model training). To install hiddenlayer, run the following command:
+```bash
+pip3 install --upgrade git+https://github.com/FabianIsensee/hiddenlayer.git
+```
+
+
 
 
