@@ -80,7 +80,8 @@ pip3 install --upgrade git+https://github.com/FabianIsensee/hiddenlayer.git
 We use the preprocessed data provided in the ISLES 24 challenge. You can download the dataset [here](https://isles-24.grand-challenge.org/dataset/). Additional data preprocessing was applied before being fed as input to a model. Our data preprocessing aims to extract 20 time-points (Sequence of 3D images) from each 4D CTP.
 
 
+## Model Training
 
-
+## Inference
 
 
