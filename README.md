@@ -43,7 +43,7 @@ We recommend creating the following structure:
 │                  ├── nnUNet_raw/
 │                  ├── nnUNet_results/
 ├── preprocess/            # Directory containing all the preprocessing scripts
-│   ├── copy_rename.py
+│   ├── process_4D_ctp.py
 |      ...
 │   └── split_dataset.py  
 ├── README.md              # Project documentation
