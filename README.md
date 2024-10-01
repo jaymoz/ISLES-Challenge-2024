@@ -63,8 +63,7 @@ Install dependencies in the virual environment:
 pip3 install -r requirements.txt
 ```
 
-Install torch locally [here] (https://pytorch.org/get-started/locally/]
-
+Install torch locally [here](https://pytorch.org/get-started/locally/).
 Clone the official `nnUNET` repository:
 ```bash
 cd models/workspace
