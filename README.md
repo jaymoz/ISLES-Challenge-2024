@@ -53,7 +53,7 @@ We recommend creating the following structure:
 
 ### nnUNET Setup
 Before installing nnUNET, we recommend creating a virtual environment. You can install `nnUNETv2` using the following steps:
-Create a virtual environment:
+
 ```bash
 python3 -m venv nnunet-env
 source nnunet-env/bin/activate
