@@ -58,9 +58,9 @@ def copyRename(source_dir: str, images_dst_dir : str, masks_dst_dir: str, prefix
                     shutil.copy(src_file, dst_file)
 
 
-source_dir = 'Path to the source directory containing patient folders'
-images_dst_dir = 'Path to the destination directory for CT perfusion maps'
-masks_dst_dir = 'Path to the destination directory for lesion masks.'
+source_dir = 'Path to the source directory containing patient folders' # path to ISLES 24 derivatives folder
+images_dst_dir = 'Path to the destination directory for CT perfusion maps' # path to dataset/preprocessed/images
+masks_dst_dir = 'Path to the destination directory for lesion masks.' # path to dataset/preprocessed/masks
 
 prefix = "BRAIN"
 
