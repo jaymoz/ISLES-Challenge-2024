@@ -77,7 +77,14 @@ pip3 install --upgrade git+https://github.com/FabianIsensee/hiddenlayer.git
 ```
 
 ## Data Preprocessing
-We use the preprocessed data provided in the ISLES 24 challenge. Additional data preprocessing was applied before being fed as input to a model. Our data preprocessing aims to extract 20 time-points (Sequence of 3D images) from each 4D CTP. 
+We use the preprocessed data provided in the ISLES 24 challenge. Additional data preprocessing was applied before being fed as input to a model. Our data preprocessing aims to extract 20 time-points (Sequence of 3D images) from each 4D CTP.
+
+* Edit the path variables in the preprocess/copy_rename.py file. This script copies and renames CT perfusion maps and lesion masks (following the nnUNet datasets naming convention) from a source directory to specified destination directories.
+run the script:
+```
+python3 preprocess/copy_rename.py
+```
+
 
 
 
