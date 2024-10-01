@@ -23,8 +23,8 @@ cd ISLES-Challenge-2024
 ```
 You must first set up a few things on your local machine or a capable server such as the model that will be used(nnUNetv2). You need to set paths on your machine representing where you save raw data, preprocessed data, and trained models.
 * nnUNet_raw: This is where you put your starting point data. It should follow the nnUNet datasets naming [convention](https://github.com/MIC-DKFZ/nnUNet/blob/master/documentation/dataset_format.md).
-* nnUNet_preprocessed: Preprocessed data will be saved here. This folder will be used by nnUNet when you run the preprocessing command (we will cover it below) in order to save the preprocessed data.
-* nnUNet_results: this is the folder where nnUNet will save the training artifacts, including model weights, configuration JSON files and debug output.
+* nnUNet_preprocessed: Preprocessed data will be saved here. This folder will be used by nnUNet when you run the preprocessing command to save the preprocessed data.
+* nnUNet_results: This is the folder where nnUNet will save the training artifacts, including model weights, configuration JSON files and debug output.
 
 We recommend creating the following structure:
 
