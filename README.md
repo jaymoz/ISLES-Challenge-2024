@@ -185,32 +185,32 @@ nnUNetv2_plan_and_preprocess: This command initializes the planning and preproce
 Once the planning and preprocessing is complete, you can begin training. We train a 3D full resolution model using a 5-fold cross validation setup. You can train each fold using the following command:
 For the first fold:
 ```bash
-nnUNetv2_train 100 3d_fullres 0 -p nnUNetResEncUNetLPlans
+nnUNetv2_train 100 3d_fullres 0 -p nnUNetResEncUNetMPlans
 ```
 For the second fold:
 ```bash
-nnUNetv2_train 100 3d_fullres 1 -p nnUNetResEncUNetLPlans
+nnUNetv2_train 100 3d_fullres 1 -p nnUNetResEncUNetMPlans
 ```
 For the third fold:
 ```bash
-nnUNetv2_train 100 3d_fullres 2 -p nnUNetResEncUNetLPlans
+nnUNetv2_train 100 3d_fullres 2 -p nnUNetResEncUNetMPlans
 ```
 For the fourth fold:
 ```bash
-nnUNetv2_train 100 3d_fullres 3 -p nnUNetResEncUNetLPlans
+nnUNetv2_train 100 3d_fullres 3 -p nnUNetResEncUNetMPlans
 ```
 For the fifth fold:
 ```bash
-nnUNetv2_train 100 3d_fullres 4 -p nnUNetResEncUNetLPlans
+nnUNetv2_train 100 3d_fullres 4 -p nnUNetResEncUNetMPlans
 ```
 
 If you have multiple GPUs, you can train each fold on each GPU by specifying:
 ```bash
-CUDA_VISIBLE_DEVICES=0 nnUNetv2_train 100 3d_fullres 0 -p nnUNetResEncUNetLPlans
+CUDA_VISIBLE_DEVICES=0 nnUNetv2_train 100 3d_fullres 0 -p nnUNetResEncUNetMPlans
 ```
 This will train the first fold on the first GPU. Subsequently,
 ```bash
-CUDA_VISIBLE_DEVICES=1 nnUNetv2_train 100 3d_fullres 1 -p nnUNetResEncUNetLPlans
+CUDA_VISIBLE_DEVICES=1 nnUNetv2_train 100 3d_fullres 1 -p nnUNetResEncUNetMPlans
 ```
 will train the second fold on the second GPU. If you plan on training using multiple GPUs, you should wait for the dataset to finish unpacking and training to commence before running the command on other GPUs.
 
