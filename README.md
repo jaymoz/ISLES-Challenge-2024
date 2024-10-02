@@ -122,7 +122,7 @@ We use the preprocessed data provided by the ISLES 24 challenge. You can downloa
          ```
          BRAIN_001.nii.gz
          ```
-   4. **Skull Stripping**
+4. **Skull Stripping**
       - Update the `INPUT_DIR` variable in the `skull_strip.sh` script. This should be the path to the folder containing the extracted time-points.
       - The script uses the SynthStrip Docker image, so ensure that Docker is installed on your local machine.
       - Note: This script will only perform skull stripping on the first time-point for each patient to minimize processing time, as the Docker image may take too long to process all time-points.
@@ -136,7 +136,7 @@ We use the preprocessed data provided by the ISLES 24 challenge. You can downloa
         ```
         - This script will compute the mask from the first time-point of each patient and apply it to all subsequent time-points.
    
-   5. **Foreground Cropping**
+5. **Foreground Cropping**
       - We crop the foreground of all time-points to remove irrelevant information and retain only the brain region.
       - Edit the path variables in the `crop_brain.py` file to point to the folder containing the extracted time-points and masks.
       - Run the cropping script using the following command:
