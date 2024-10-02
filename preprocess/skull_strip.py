@@ -5,13 +5,29 @@ from tqdm import tqdm
 
 
 def apply_mask(mask_img, target_img):
+    """
+    Applies a binary mask to a target image.
+    
+    Parameters:
+    - mask_img: A NIfTI image object representing the skull-stripped mask.
+    - target_img: A NIfTI image object representing the target image to be masked.
+    
+    Returns:
+    - A new NIfTI image object containing the masked data.
+    """
     mask_data = mask_img.get_fdata()
     target_data = target_img.get_fdata()
     masked_data = target_data * (mask_data > 0)
     return nib.Nifti1Image(masked_data, target_img.affine)
 
 def skullStrip(input_dir: str):
+    """
+    Groups NIfTI images by patient ID and applies the skull-stripped mask from the first time point 
+    to all other modalities for each patient.
 
+    Parameters:
+    - input_dir: The directory containing the NIfTI images.
+    """
     patients = {}
     for img_filename in tqdm(os.listdir(input_dir), desc="Grouping imaging modalities by patients"):
         if img_filename.endswith('.nii.gz') or img_filename.endswith(".nii"):
@@ -37,6 +53,6 @@ def skullStrip(input_dir: str):
 
 
 
-input_dir = r"C:\Users\ai2lab\Desktop\ISLES_2024\dataset\preprocessed\images"
+input_dir = "PATH_TO_FOLDER CONTAINING TIMEPOINTS e.g preprocessed/images"
 
 skullStrip(input_dir)
