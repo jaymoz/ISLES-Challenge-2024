@@ -6,6 +6,7 @@
 
 This repository contains the implementation used by Team Ninjas, ranked in the top 3 at the MICCAI ISLES 24 Challenge. We aim to fully exploit the rich temporal and spatial information within the 4D CTP data. Our approach involves capturing the dynamics of the contrast agent by extracting time points from the 4D CTP data with the highest concentration. This is crucial because these time points reflect the temporal progression of blood flow and tissue perfusion, which are vital for accurately segmenting ischemic stroke lesions. We leveraged the nnUNETv2 3d full resolution model for segmentation.
 
+Our algorithm heavily relies on nnUNetv2. Please check out the documentation [here](https://github.com/MIC-DKFZ/nnUNet/tree/master/documentation).
 ## Table of Contents
 1. [Installation](#installation)
 2. [Data Preprocessing](#data-preprocessing)
@@ -170,6 +171,79 @@ Next, we split our dataset into train, validation and test sets. You can modify 
 ```bash
 python3 preprocess/split_dataset.py
 ```
+Next, run:
+
+```bash
+nnUNetv2_plan_and_preprocess -d 100 -pl nnUNetPlannerResEncM
+```
+nnUNetv2_plan_and_preprocess: This command initializes the planning and preprocessing steps for the nnUNetv2 framework. It sets up your dataset for training, including necessary configurations and transformations.
+
+-d 100: A unique identifier for the dataset.
+
+-pl nnUNetPlannerResEncM: This flag specifies the planner used during the preprocessing step. We use the residual encoder medium presets.
+
+Once the planning and preprocessing is complete, you can begin training. We train a 3D full resolution model using a 5-fold cross validation setup. You can train each fold using the following command:
+For the first fold:
+```bash
+nnUNetv2_train 100 3d_fullres 0 -p nnUNetResEncUNetLPlans
+```
+For the second fold:
+```bash
+nnUNetv2_train 100 3d_fullres 1 -p nnUNetResEncUNetLPlans
+```
+For the third fold:
+```bash
+nnUNetv2_train 100 3d_fullres 2 -p nnUNetResEncUNetLPlans
+```
+For the fourth fold:
+```bash
+nnUNetv2_train 100 3d_fullres 3 -p nnUNetResEncUNetLPlans
+```
+For the fifth fold:
+```bash
+nnUNetv2_train 100 3d_fullres 4 -p nnUNetResEncUNetLPlans
+```
+
+If you have multiple GPUs, you can train each fold on each GPU by specifying:
+```bash
+CUDA_VISIBLE_DEVICES=0 nnUNetv2_train 100 3d_fullres 0 -p nnUNetResEncUNetLPlans
+```
+This will train the first fold on the first GPU. Subsequently,
+```bash
+CUDA_VISIBLE_DEVICES=1 nnUNetv2_train 100 3d_fullres 1 -p nnUNetResEncUNetLPlans
+```
+will train the second fold on the second GPU. If you plan on training using multiple GPUs, you should wait for the dataset to finish unpacking and training to commence before running the command on other GPUs.
 
 ## Inference
 
+To make predictions using nnUNetv2, you can use the following command structure:
+
+```bash
+nnUNetv2_predict -i <INPUT_IMAGES_DIRECTORY> -o <OUTPUT_PREDICTIONS_DIRECTORY> -d <DATASET_ID> -c <CONFIGURATION> -tr <TRAINER> -p <PLANS> -chk <CHECKPOINT_FILE>
+```
+
+- **`-i <INPUT_IMAGES_DIRECTORY>`**:  
+  Path to the directory containing the input images for which predictions will be made.
+
+- **`-o <OUTPUT_PREDICTIONS_DIRECTORY>`**:  
+  Path to the directory where the predictions will be saved.
+
+- **`-d <DATASET_ID>`**:  
+  The ID of the dataset you are working with (e.g., `100` for your custom dataset).
+
+- **`-c <CONFIGURATION>`**:  
+  The configuration to use for the predictions (e.g., `3d_fullres`).
+
+- **`-tr <TRAINER>`**:  
+  The trainer type to use for making predictions (e.g., `nnUNetTrainer`).
+
+- **`-p <PLANS>`**:  
+  The planning strategy used for the specific model architecture (e.g., `nnUNetResEncUNetMPlans`).
+
+- **`-chk <CHECKPOINT_FILE>`**:  
+  The filename of the checkpoint from which to load the model weights for making predictions (e.g., `checkpoint_latest.pth`, `checkpoint_final`, `checkpoint_best`).
+  An example is given below:
+
+  ```bash
+  nnUNetv2_predict -i /path/to/models/workspace/nnunet_data/nnUNet_raw/Dataset100_BRAIN/imagesTs -o /path/to/models/workspace/nnunet_data/nnUNet_predictions -d 100 -c 3d_fullres -tr nnUNetTrainer -p nnUNetResEncUNetMPlans -chk checkpoint_latest.pth
+  ```
