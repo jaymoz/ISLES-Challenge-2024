@@ -77,7 +77,49 @@ pip3 install --upgrade git+https://github.com/FabianIsensee/hiddenlayer.git
 ```
 
 ## Data Preprocessing
-We use the preprocessed data provided in the ISLES 24 challenge. You can download the dataset [here](https://isles-24.grand-challenge.org/dataset/). Additional data preprocessing was applied before being fed as input to a model. Our data preprocessing aims to extract 20 time-points (Sequence of 3D images) from each 4D CTP.
+
+We use the preprocessed data provided by the ISLES 24 challenge. You can download the dataset [here](https://isles-24.grand-challenge.org/dataset/). Additional preprocessing steps were applied before feeding the data into our model. The goal of our preprocessing is to extract **20 time-points** (a sequence of 3D images) from each 4D CT Perfusion (CTP) scan. This will be fed as a 20-channel input to an nnUNetv2 3D full resolution model.
+
+### Steps to Preprocess the Data
+
+1. **Edit Path Variables**
+   - Update the path variables in the `preprocess/process_4D_ctp.py` file to match your local directory structure.
+
+2. **Run the Preprocessing Script**
+   - Running this script will process each 4D CTP scan in the ISLES 24 dataset as follows:
+     - **Clip voxel intensities**: 
+       - All voxel values are clipped to a range of **0 to 100 Hounsfield Units (HU)**. This eliminates outliers and helps separate the brain from the skull.
+     - **Identify the peak intensity time-point**: 
+       - The script identifies the time-point where the concentration of the contrast agent is at its maximum, then extracts **20 time-points** centered around this peak.
+     - **Save time-points in nnUNet format**:
+       - The extracted time-points are saved using the following nnUNet dataset naming convention:
+         ```
+         {DATASET_NAME}_{CASE_ID}_{XXXX}.nii.gz
+         ```
+         where:
+         - `DATASET_NAME` is a unique identifier for the dataset. We use `BRAIN` in this implementation.
+         - `CASE_ID` refers to the last three digits of the patient's ID, uniquely identifying each patient.
+         - `XXXX` is a 4-digit modality/channel identifier. In our case, it is a 4-digit zero-padded index representing the time-point position (e.g., `0000` for the first time-point, `0019` for the last).
+   
+         **Example for time-point images**:
+         ```
+         BRAIN_001_0000.nii.gz
+         BRAIN_001_0001.nii.gz
+         ...
+         BRAIN_001_0019.nii.gz
+         ```
+
+     - **Save lesion masks**:
+       - The corresponding lesion masks are saved with the following format:
+         ```
+         {DATASET_NAME}_{CASE_ID}.nii.gz
+         ```
+
+         **Example for mask**:
+         ```
+         BRAIN_001.nii.gz
+         ```
+  3. 
 
 
 ## Model Training
