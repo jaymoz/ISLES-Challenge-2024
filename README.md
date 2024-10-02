@@ -123,7 +123,7 @@ We use the preprocessed data provided by the ISLES 24 challenge. You can downloa
          BRAIN_001.nii.gz
          ```
 4. **Skull Stripping**
-      - Update the `INPUT_DIR` variable in the `skull_strip.sh` script. This should be the path to the folder containing the extracted time-points.
+      - Update the `INPUT_DIR` variable in the `preprocess/skull_strip.sh` script. This should be the path to the folder containing the extracted time-points.
       - The script uses the SynthStrip Docker image, so ensure that Docker is installed on your local machine.
       - Note: This script will only perform skull stripping on the first time-point for each patient to minimize processing time, as the Docker image may take too long to process all time-points.
       - Run the script using the following command:
