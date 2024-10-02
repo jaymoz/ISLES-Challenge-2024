@@ -19,6 +19,6 @@ def grant_read_write_access(folder1, folder2):
     change_permissions(folder1)
     change_permissions(folder2)
 
-folder1 = r'C:\Users\ai2lab\Desktop\ISLES_2024\dataset\preprocessed\images'
-folder2 = r'C:\Users\ai2lab\Desktop\ISLES_2024\dataset\preprocessed\masks'
+folder1 = ''
+folder2 = ''
 grant_read_write_access(folder1, folder2)
