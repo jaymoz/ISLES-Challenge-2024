@@ -145,7 +145,31 @@ We use the preprocessed data provided by the ISLES 24 challenge. You can downloa
         ```
         
 ## Model Training
+Before we can begin training, we need to export some paths to the environment variables. These paths are: nnUNet_raw, nnUNet_preprocessed, nnUNet_results, nnUNet_predictions. You can set them
+directly in the terminal where you’re going to run nnUNet commands from.  
+On Linux:
+```bash
+export nnUNet_raw="PATH TO models/workspace/datasets/nnunet_data/nnUNet_raw"
+export nnUNet_preprocessed="PATH TO models/workspace/datasets/nnunet_data/nnUNet_preprocessed"
+export nnUNet_results="PATH TO models/workspace/datasets/nnunet_data/nnUNet_results"
+export nnUNet_predictions="PATH TO models/workspace/datasets/nnunet_data/nnUNet_results"
+```
+On Windows:
+```bash
+set nnUNet_raw="PATH TO models\workspace\datasets\nnunet_data\nnUNet_raw"
+set nnUNet_preprocessed="PATH TO models\workspace\datasets\nnunet_data\nnUNet_preprocessed"
+set nnUNet_results="PATH TO models\workspace\datasets\nnunet_data\nnUNet_results"
+set nnUNet_predictions="PATH TO models\workspace\datasets\nnunet_data\nnUNet_results"
+```
+Note: This only sets the environment variables temporarily. Meaning that if you close your terminal or you open another terminal window, then these variables will need to be set again.
+
+If you want a more permanent solution, then you should add these commands in the .bashrc file if you’re on Linux or you could add them as environment variables in the “Edit system environment variables” panel on Windows.
+
+Next, we split our dataset into train, validation and test sets. You can modify the preprocess/split_dataset.py file for your desired split ratio. In our case, we choose 90% for training and validation in a 5-fold cross validation setup, and 10% for testing. Ensure that the path variables are correct and updated. 
+
+```bash
+python3 preprocess/split_dataset.py
+```
 
 ## Inference
-
 
