@@ -12,8 +12,7 @@ Our algorithm heavily relies on nnUNetv2. Please check out the documentation [he
 2. [Data Preprocessing](#data-preprocessing)
 3. [Model Training](#model-training)
 4. [Inference](#inference)
-5. [Citation](#citation)
-6. [License](#license)
+5. [Team](#team)
 
 ## Installation
 
@@ -247,3 +246,24 @@ nnUNetv2_predict -i <INPUT_IMAGES_DIRECTORY> -o <OUTPUT_PREDICTIONS_DIRECTORY> -
   ```bash
   nnUNetv2_predict -i /path/to/models/workspace/nnunet_data/nnUNet_raw/Dataset100_BRAIN/imagesTs -o /path/to/models/workspace/nnunet_data/nnUNet_predictions -d 100 -c 3d_fullres -tr nnUNetTrainer -p nnUNetResEncUNetMPlans -chk checkpoint_latest.pth
   ```
+
+## Team
+
+If you have questions, please contact [jacob.idoko@ucalgary.ca](mailto:jacob.idoko@ucalgary.ca). Our team members include:
+
+- **Jacob Idoko**<sup>1</sup>
+- **Salome Bosshart**<sup>1</sup>
+- **Alexander Stebner**<sup>1</sup>
+- **Johanna Ospel**<sup>1</sup>
+- **Mayank Goyal**<sup>1</sup>
+- **Nikita Malik**<sup>2</sup>
+- **Atindra Jayakar**<sup>3</sup>
+- **Roberto Souza**<sup>1</sup>
+- **Mariana Bento**<sup>1</sup>
+- **Gouri Ginde**<sup>1</sup>
+
+<small>
+<sup>1</sup>University of Calgary, Canada <br>
+<sup>2</sup>Manipal Institute of Technology, India <br>
+<sup>3</sup>Mukesh Patel School of Technology Management and Engineering, India
+</small>
