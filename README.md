@@ -186,6 +186,7 @@ Copy the dataset.json file in `utils/` and place it inside nnUNet_raw/Dataset100
 |                         ├── dataset.json
 │                  ├── nnUNet_results/
 ```
+100 in Dataset100_BRAIN is a unique identifier for the dataset. This MUST follow the nnUNet format. We need this ID when running the `nnUNetve_plan_and_preprocess` command.
 If you used different split ratios for training, validation, and test then adjust the `numTraining` parameters in the file (dataset.json) to reflect the number of training samples.
 Next, run:
 
