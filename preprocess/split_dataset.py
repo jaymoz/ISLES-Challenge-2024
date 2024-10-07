@@ -71,7 +71,7 @@ class DATASET_SPLITTER:
 # Split the dataset into train, test set. (You can modify the code to include validation set)
 images_dir = "Path to preprocessed/images folder"
 labels_dir = "Path to preprocessed/masks folder"
-output_dir = "Path to /workspace/datasets/nnunet_data/nnUNet_raw/Dataset100_BRAIN" # The script will create the Dataset100_BRAIN/ directory
+output_dir = "Path to /workspace/datasets/nnunet_data/nnUNet_raw/Dataset100_BRAIN"
 
 
 train_ratio = 0.9
