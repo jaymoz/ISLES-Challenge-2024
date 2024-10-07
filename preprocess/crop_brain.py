@@ -59,7 +59,7 @@ def crop_foreground_(images_dir, masks_dir, num_modalities):
             if index == len(filenames) - 1:
                 modality_name = 'mask'
             else:
-                modality_name = filename.split('_')[3].split('.')[0]
+                modality_name = filename.split('_')[-1].split('.')[0]
 
             if modality_name in modality_keys:
                 modality_paths[modality_name] = filename
