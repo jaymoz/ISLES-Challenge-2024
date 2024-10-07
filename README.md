@@ -171,7 +171,7 @@ Next, we split our dataset into train, validation and test sets. You can modify 
 python3 preprocess/split_dataset.py
 ```
 Copy the dataset.json file in utils/* and place it inside nnUNet_raw/Dataset100_BRAIN/ folder. The structure should look like this:
-
+```
 ├── models/
 │       ├── workspace/
 │           ├── datasets/
@@ -185,7 +185,7 @@ Copy the dataset.json file in utils/* and place it inside nnUNet_raw/Dataset100_
 |                         ├── labelsTr/
 |                         ├── dataset.json
 │                  ├── nnUNet_results/
-
+```
 If you used different split ratios for training, validation, and test then adjust the `numTraining` parameters in the file (dataset.json) to reflect the number of training samples.
 Next, run:
 
