@@ -170,7 +170,7 @@ Next, we split our dataset into train, validation and test sets. You can modify 
 ```bash
 python3 preprocess/split_dataset.py
 ```
-Copy the dataset.json file in utils/* and place it inside nnUNet_raw/Dataset100_BRAIN/ folder. The structure should look like this:
+Copy the dataset.json file in `utils/` and place it inside nnUNet_raw/Dataset100_BRAIN/ folder. The structure should look like this:
 ```
 ├── models/
 │       ├── workspace/
