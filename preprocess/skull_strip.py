@@ -49,7 +49,6 @@ def skullStrip(input_dir: str):
                     
                     output_filename = os.path.join(input_dir, os.path.basename(target_img_path))
                     nib.save(masked_img, output_filename)
-        break
 
 
 
