@@ -4,7 +4,7 @@
 
 ## Overview
 
-This repository contains the implementation used by Team Ninjas, ranked in the top 3 at the MICCAI ISLES 24 Challenge. We aim to fully exploit the rich temporal and spatial information within the 4D CTP data. Our approach involves capturing the dynamics of the contrast agent by extracting time points from the 4D CTP data with the highest concentration. This is crucial because these time points reflect the temporal progression of blood flow and tissue perfusion, which are vital for accurately segmenting ischemic stroke lesions. We leveraged the nnUNETv2 3d full resolution model for segmentation.
+This repository contains the algorithmic implementation used by Team Ninjas, ranked in the top 3 at the MICCAI ISLES 24 Challenge, where we predicted the final post-treatment stroke infarct using pre-treatment acute imaging. We aim to fully exploit the rich temporal and spatial information within the 4D CTP data. Our approach involves capturing the dynamics of the contrast agent by extracting time points from the 4D CTP data with the highest concentration. This is crucial because these time points reflect the temporal progression of blood flow and tissue perfusion, which are vital for accurately segmenting ischemic stroke lesions. We leveraged the nnUNETv2 3d full resolution model for segmentation.
 
 Our algorithm heavily relies on nnUNetv2. Please check out the documentation [here](https://github.com/MIC-DKFZ/nnUNet/tree/master/documentation).
 ## Table of Contents
